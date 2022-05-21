@@ -1,0 +1,21 @@
+//https://practice.geeksforgeeks.org/problems/square-root/1
+class Solution
+{
+     long floorSqrt(long x)
+	 {
+		// Your code here
+		long s=1,e=x;
+		long mid=(s+e)/2;
+		while(s<=e){
+		    if(mid*mid==x)
+		    return mid;
+		    else if(mid*mid>x)
+		    e=mid-1;
+		    else
+		    s=mid+1;
+		    
+		    mid=(s+e)/2;
+		}
+		return mid;
+	 }
+}
