@@ -1,0 +1,45 @@
+//Search in a Rotated Array 
+//Given a sorted and rotated array A of N distinct elements which is rotated at some point, and given an element key. The task is to find the index of the given element key in the array A.
+
+class Solution
+{
+    public static int find(int a[],int s, int e, int k){
+        int mid=(s+e)/2;
+        while(s<=e){
+            if(a[mid]==k)
+            return mid;
+            else if(a[mid]<k)
+            s=mid+1;
+            else
+            e=mid-1;
+            
+            mid=(s+e)/2;
+        }
+        return -1;
+    }
+    int search(int A[], int l, int h, int key)
+    {
+        // Complete this function
+        int s=l;
+        int e=h;
+        int mid=s+(e-s)/2;
+        while(s<e){
+            if(A[mid]>=A[0])
+            s=mid+1;
+            else
+            e=mid;
+            
+            mid=s+(e-s)/2;
+        }
+        int p=s-1;
+        if(A[s]<=key && key<=A[h]){
+            return find(A,s,h,key);
+        }
+        else{
+           return find(A,l,p,key);
+        }
+           
+ 
+        
+    }
+}
