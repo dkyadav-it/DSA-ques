@@ -1,0 +1,42 @@
+// https://practice.geeksforgeeks.org/problems/the-painters-partition-problem1535/1/
+class Solution{
+     public static boolean isPossible(int[] arr,int n ,int k,long mid){
+         long stNo=1;
+         long paintSum=0;
+         for(int i=0;i<n;i++){
+             if(paintSum+arr[i]<=mid){
+                 paintSum+=arr[i];
+             }else{
+                 stNo++;
+                 if(stNo>k || arr[i]>mid)
+                 return false;
+                 
+                 paintSum=arr[i];
+             }
+         }
+         return true;
+     }
+    static long minTime(int[] arr,int n,int k){
+        //code here
+        long sum=0;
+        for(int i=0;i<n;i++){
+            sum+=Long.valueOf(arr[i]);
+        }
+        long s=0;
+        long e=sum;
+        long mid=s+(e-s)/2;
+        long ans=-1;
+        while(s<=e){
+            if(isPossible(arr,n,k,mid)){
+                ans=mid;
+                e=mid-1;
+            }
+            else
+            s=mid+1;
+            
+            mid=s+(e-s)/2;
+        }
+        
+        return ans;
+    }
+}
